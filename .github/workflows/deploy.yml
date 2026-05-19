@@ -1,0 +1,39 @@
+name: Deploy weather-secom
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
+          script: |
+            set -e
+
+            PROJECT_DIR="$HOME/weather-secom"
+
+            # Update code
+            cd "$PROJECT_DIR"
+            git fetch origin
+            git reset --hard origin/main
+
+            # Rebuild and restart containers
+            sudo docker compose down
+            sudo docker compose up --build -d
+
+            # Verify containers are running
+            sudo docker compose ps
