@@ -1,0 +1,31 @@
+services:
+
+  ecs-secom:
+    build:
+      context: ./temporary-secom
+      dockerfile: Dockerfile
+    image: bluemap/ecs-secom-temp:latest
+    container_name: ecs-secom-temp
+    restart: unless-stopped
+    ports:
+      - "8766:8766"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "5"
+
+  weather-secom:
+    build:
+      context: ./temporary-ping
+      dockerfile: Dockerfile
+    image: bluemap/weather-secom-temp:latest
+    container_name: weather-secom-temp
+    restart: unless-stopped
+    ports:
+      - "8767:8767"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "5"
