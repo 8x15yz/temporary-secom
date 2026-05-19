@@ -25,8 +25,13 @@ jobs:
             set -e
 
             PROJECT_DIR="$HOME/weather-secom"
+            REPO_URL="${{ secrets.REPO_URL }}"
 
-            # Update code
+            # Clone if not exists, otherwise update
+            if [ ! -d "$PROJECT_DIR/.git" ]; then
+              git clone "$REPO_URL" "$PROJECT_DIR"
+            fi
+
             cd "$PROJECT_DIR"
             git fetch origin
             git reset --hard origin/main
