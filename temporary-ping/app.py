@@ -1,7 +1,9 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 from datetime import datetime, timezone, timedelta
 
 app = Flask(__name__)
+CORS(app)
 
 KST = timezone(timedelta(hours=9))
 
