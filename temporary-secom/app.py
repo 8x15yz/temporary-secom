@@ -5,7 +5,7 @@ import requests
 app = Flask(__name__)
 CORS(app)
 
-TARGET = "http://weather-api.bmap.kr"
+TARGET = "https://weather-api.bmap.kr"
 
 
 @app.route("/", defaults={"path": ""}, methods=["GET", "POST", "PUT", "DELETE", "PATCH"])
