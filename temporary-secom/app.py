@@ -3,7 +3,7 @@ from flask_cors import CORS
 import requests
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://ecs.bluemap.co.kr", "https://ecs-secom.bmap.kr"])
 
 TARGET = "https://weather-api.bmap.kr"
 
