@@ -40,8 +40,8 @@ services:
     image: bluemap/weather-secom-temp:latest
     container_name: weather-secom-temp
     restart: unless-stopped
-    ports:
-      - "8767:8767"
+    expose:
+      - "8767"
     logging:
       driver: "json-file"
       options:
