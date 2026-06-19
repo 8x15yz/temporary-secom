@@ -1,9 +1,15 @@
+## ecs secom proxy server -> "https://ecs-secom.bmap.kr"
+
 from flask import Flask, request, Response
 from flask_cors import CORS
 import requests
 
 app = Flask(__name__)
-CORS(app, origins=["https://ecs.bluemap.co.kr", "https://ecs-secom.bmap.kr"])
+CORS(app, origins=[
+    "https://ecs.bluemap.co.kr",
+    "https://ecs-secom.bmap.kr",
+    "http://localhost:8080",   # 추가
+])
 
 TARGET = "https://weather-api.bmap.kr"
 

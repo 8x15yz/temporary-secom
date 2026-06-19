@@ -1,3 +1,5 @@
+## weather secom proxy server -> "https://weather-secom.bmap.kr"
+
 from flask import Flask, jsonify
 from flask_cors import CORS
 from datetime import datetime, timezone, timedelta
